@@ -1,5 +1,6 @@
 package com.example.asmita.signup;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -40,12 +41,12 @@ public class SignUp extends AppCompatActivity {
 
 //                Alternative, but not a good practice..difficult if we have many radio buttons.
               String salute="";
-//                if(r1.isChecked()){
-//                    salute="Ms";
-//                }
-//                else{
-//                    salute="Mr";
-//                }
+                if(r1.isChecked()){
+                    salute="Ms";
+                }
+                else{
+                    salute="Mr";
+                }
                 int i = rg.getCheckedRadioButtonId();
                 RadioButton rb = (RadioButton) rg.findViewById(i);
 
@@ -53,8 +54,20 @@ public class SignUp extends AppCompatActivity {
                 final String email = etemail.getText().toString();
                 final String password = etpassword.getText().toString();
 
-                Toast.makeText(SignUp.this,name+" \n"+ email+"\n"+ password+" \n"+rb.getText().toString(),Toast.LENGTH_LONG).show();
+                Toast.makeText(SignUp.this,salute+ name+" \n"+ email+"\n"+ password+" \n"+rb.getText().toString(),Toast.LENGTH_LONG).show();
                // System.out.println(salute+"."+name+" /n"+ email+"/n"+ password);
+
+                Intent intent = new Intent(SignUp.this,ShowData.class);
+                intent.putExtra("name",name);
+                intent.putExtra("gender",salute);
+                intent.putExtra("email",email);
+                intent.putExtra("password",password);
+
+                startActivity(intent);
+
+
+
+
             }
         });
     }
